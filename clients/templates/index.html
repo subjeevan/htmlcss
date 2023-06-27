@@ -1,0 +1,10 @@
+{%extends 'common/base.html'%}
+
+{%block index%}
+<form method="POST" action="{%url 'form'%}">
+{%csrf_token%}
+    {{regform.as_p}}
+
+    <input type="submit" value="Register">
+</form>
+{%endblock%}

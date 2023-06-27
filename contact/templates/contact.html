@@ -1,0 +1,61 @@
+<h1> I am main Contact page</h1>
+
+<form method="POST" action="">
+    {%csrf_token%}
+    <input type="Submit" value="Send">
+</form>
+
+<form method="POST" action="{%url 'savedata'%}">
+    {%csrf_token%}
+    <label for="Name"> Name</label>
+    <input id="Name"  name="name" type="text" required><br>
+    <label for="message"> address</label>
+    <input id="message" name="message" type="text" required><br>
+    <label for="address"> address</label>
+    <input id="address" name="address" type="text" required><br>
+    <label for="mobile"> mobile</label>
+    <input id="mobile" name="mobile" type="number" required><br>
+    <label > Gender</label><br>
+    <label for="gender" > male</label>
+    <input id="gender" name="gender" type="radio" value="F" checked>
+    <label for="gender"> Female</label>
+    <input id="gender" name="gender" type="radio" value="M" ><br>
+    <label for="country"> Select your Country</label><br>
+    <label for="country"> India</label>
+    <input id="country" name="country" type="checkbox" value="India"><br>
+    <label for="country"> Nepal</label>
+    <input id="country" name="country" type="checkbox" value="Nepal">><br>
+    <label for="country"> Bhutan</label>
+    <input id="country" name="country" type="checkbox" value="Bhutan">><br>
+    <input type="Submit" value="submit">
+
+</form>
+
+<table width="100%" border="1px">
+
+<tr>
+
+    <th>Name </th>
+
+    <th>Address </th>
+
+    <th>Mobile </th>
+    <th>Message </th>
+    <th>Action </th>
+
+
+</tr>
+{%for data in datas%}
+<tr>
+    <td> {{data.name}}</td>
+    <td> {{data.address}}</td>
+    <td> {{data.mobile}}</td>
+    <td> {{data.message}}</td>
+    <td> {{data.gender}}</td>
+    <td>{{data.country}}</td>
+    <td><a href="{%url 'edit_data' data.id%}" > Edit</a>
+        <a href="{%url 'delete_data' data.id%}" > Delete</a></td>
+</tr>
+{%endfor%}
+
+</table>

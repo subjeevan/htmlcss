@@ -1,0 +1,44 @@
+<h1>
+     Homepage
+</h1>
+
+<form method="POST" action="{% url 'homepage'%}"> 
+{%csrf_token%}
+{{form.as_p}}
+
+<input type="submit">
+{%if messages%}
+{%for message in messages%}
+{{message}}
+{%endfor%}
+{%endif%}
+
+</form>
+
+<table width="100%" border="5px, solid">
+<tr> <th> First Name</th>
+    <th>   Last Name </th>
+    <th> Full Name   </th>
+
+    <th> Address   </th>
+    <th> Action   </th></tr>
+
+    {%if datas%}
+    {%for data in datas %}
+    <tr> <td> {{data.fname}}</td>
+        <td>  {{data.lname}} </td>
+        <td>  {{data.fullname}} </td>
+
+        <td> {{data.address}}   </td>
+        <td> 
+            <a href="{%url 'editform' data.id%}">Edit</a>
+            <a href="{%url 'delform' data.id%}">Delete</a>
+              </td>
+    </tr>
+        {%endfor%}
+        {%else%}
+        <tr> <td colspan="3" align="center">No Data found </td></tr>
+        {%endif%}
+        
+
+</table>
